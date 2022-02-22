@@ -32,13 +32,14 @@ function preload() {
     game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
     game.load.image('platform', 'assets/platform.png');
     game.load.image('fon', 'assets/fon.jpg');
+    game.load.image('door', 'assets/door.png');
     game.load.image('pause', 'assets/pause.png');
     game.load.image('play', 'assets/play.png');
 	game.load.image('patron', 'assets/bullet.png');
     game.load.image('rectangle', 'assets/rectangle.png');
     game.load.image('playerImage', 'assets/status.png');
     game.load.image('other', 'assets/other.jpg');
-	game.load.spritesheet('house', 'assets/house.png', 200, 200);
+	game.load.image('house', 'assets/house.png');
 }
 
 function create() {
@@ -118,30 +119,29 @@ function create() {
     other.scale.setTo(0.9, 0.7);
     other.fixedToCamera = true;
 
-    // enters
+    // setup group physics for  the doors
     doorsEnt = game.add.physicsGroup();
     doorsEnt.enableBody = true;
+    game.physics.arcade.enable(doorsEnt);
 
-    door1 = doorsEnt.create(100, 100, 'rectangle');
-    door1.scale.setTo(0.1, 1.7);
+    // create the doors TODO make them separate
+    doorHelen = createDoor(100, 100, 150, 150, 'door', doorsEnt);
+    doorHelen.body.onCollide = new Phaser.Signal();
+    doorHelen.body.onCollide.add(enterHouse, 300, 300);
 
-    door2 = doorsEnt.create(200, 200, 'rectangle');
-    door2.scale.setTo(0.1, 1.7);
+    doorJosh = createDoor(100, 200, 150, 250, 'door', doorsEnt);
+    doorStanley = createDoor(200, 200, 250, 250, 'door', doorsEnt);
 
-    // exits
+    // setup exits logic
     doorsExt = game.add.physicsGroup();
     doorsExt.enableBody = true;
-
-    door1 = doorsExt.create(width * 3, height * 3, 'rectangle');
-    door1.scale.setTo(0.1, 1.7);
-
-    door2 = doorsExt.create(width * 3, height * 3, 'rectangle');
-    door.scale.setTo(0.1, 1.7);
+    game.physics.arcade.enable(doorsExt);
+    doorPeter = createDoor(200, 100, 250, 150, 'door', doorsExt);
 }
 
 function update() {
     if(!pause) {
-        game.physics.arcade.overlap(player, doorsEnt, enterHouse);
+        game.physics.arcade.collide(player, doorsEnt, () => {console.log("collide")});
         game.physics.arcade.collide(player, doorsExt, exitHouse);
 
         // reset dog
@@ -159,9 +159,11 @@ function update() {
         }
         if(cursors.up.isDown) {
             player.body.velocity.y = -300;
+            player.animations.play('right');
         }
         else if(cursors.down.isDown) {
             player.body.velocity.y = 300;
+            player.animations.play('left');
         }
 	    if(mouse.leftButton.isDown) {
 		    if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
@@ -190,8 +192,17 @@ function pauseAndUnpause() {
 	}
 }
 
-function enterHouse() {
-    game.camera.setPosition(width * 3, height * 3);
+function createDoor(x1Cord, y1Cord, x2Cord, y2Cord, texture, group) {
+    door = group.create(x1Cord, y1Cord, texture);
+    door.scale.setTo((x2Cord - x1Cord) / door.width, (y2Cord - y1Cord) / door.height);
+    door.body.immovable = true;
+    return door;
+}
+
+function enterHouse(x, y) {
+    console.log(x, y);
+    game.camera.x = x;
+    game.camera.y = y;
     game.camera.unfollow();
 
     player.lastX = player.x;
