@@ -1,4 +1,5 @@
 var pause = false;
+
 function pauseAndUnpause() {
     if(!pause) {
         pauseButton.loadTexture('play', 0);

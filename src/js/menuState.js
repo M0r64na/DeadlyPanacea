@@ -8,6 +8,5 @@ var menuState = {
     },
     start: function () {
         game.state.start('world');
-        console.log("w dwon");
     }
 }

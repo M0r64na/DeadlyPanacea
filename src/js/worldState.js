@@ -55,8 +55,8 @@ var worldState = {
         door1 = doorsExt.create(640, 450, 'rectangle');
         door1.scale.setTo(0.1, 1.7);
 		
-		// ui
-		// rectangle
+		// ------------------UI-----------------------
+		// menu background
         rectangle = game.add.image(width / 2 - 325, height - 180, 'rectangle');
 
         rectangle.fixedToCamera = true;
