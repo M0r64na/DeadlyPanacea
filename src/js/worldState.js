@@ -4,8 +4,8 @@ var worldState = {
     create: function () {
         game.world.setBounds(0, 0, width * 3, height * 3);
 		
-	background = game.add.image(0, 0, 'background');
-	background.scale.setTo(width * 3 / 273, height * 3 / 121);
+	    background = game.add.image(0, 0, 'background');
+	    background.scale.setTo(width * 3 / 273, height * 3 / 121);
 
         // player
         player = game.add.sprite(0, 0, 'ball');
@@ -33,10 +33,10 @@ var worldState = {
 
         mouse = game.input.mousePointer;
 
-	// pause button
-	pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
+	    // pause button
+	    pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
 
-	pauseButton.fixedToCamera = true;
+	    pauseButton.fixedToCamera = true;
 
         // enters
         doorsEnt = game.add.physicsGroup();
@@ -55,8 +55,8 @@ var worldState = {
         door1 = doorsExt.create(640, 450, 'rectangle');
         door1.scale.setTo(0.1, 1.7);
 		
-	// ------------------UI-----------------------
-	// menu background
+	    // ------------------UI------------------
+	    // menu background
         rectangle = game.add.image(width / 2 - 325, height - 180, 'rectangle');
 
         rectangle.fixedToCamera = true;
@@ -92,34 +92,34 @@ var worldState = {
         other.fixedToCamera = true;
     },
     update: function () {
-	if(!pause) {
-		game.physics.arcade.overlap(player, doorsEnt);
-		game.physics.arcade.collide(player, doorsExt);
-
-		// reset dog
-		player.body.velocity.x = 0;
-		player.body.velocity.y = 0;
-
-		// move dog
-		if(cursors.left.isDown) {
-			player.body.velocity.x = -300;
-			player.animations.play('left');
-		}
-		else if(cursors.right.isDown) {
-			player.body.velocity.x = 300;
-			player.animations.play('right');
-		}
-		if(cursors.up.isDown) {
-			player.body.velocity.y = -300;
-		}
-		else if(cursors.down.isDown) {
-			player.body.velocity.y = 300;
-		}
-		if(mouse.leftButton.isDown) {
-			if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
-				weapon.fireAtPointer(mouse);
-			}
-		}
-	}
+        if(!pause) {
+            game.physics.arcade.overlap(player, doorsEnt);
+            game.physics.arcade.collide(player, doorsExt);
+    
+            // reset dog
+            player.body.velocity.x = 0;
+            player.body.velocity.y = 0;
+    
+            // move dog
+            if(cursors.left.isDown) {
+                player.body.velocity.x = -300;
+                player.animations.play('left');
+            }
+            else if(cursors.right.isDown) {
+                player.body.velocity.x = 300;
+                player.animations.play('right');
+            }
+            if(cursors.up.isDown) {
+                player.body.velocity.y = -300;
+            }
+            else if(cursors.down.isDown) {
+                player.body.velocity.y = 300;
+            }
+            if(mouse.leftButton.isDown) {
+                if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
+                    weapon.fireAtPointer(mouse);
+                }
+            }
+        }
     }
 }

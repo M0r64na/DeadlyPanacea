@@ -13,7 +13,7 @@ game.state.add('world', worldState);
 
 game.state.start('load');
 
-//var background;
+var background;
 var player;
 var cursors;
 var sprite;
@@ -30,3 +30,5 @@ var playerImage;
 var other;
 var lastX;
 var lastY;
+var startMenuBackground;
+var startButton;
