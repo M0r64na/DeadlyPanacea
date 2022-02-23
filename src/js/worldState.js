@@ -1,14 +1,11 @@
-// 
+// the world with the different houses
 
 var worldState = {
     create: function () {
-        game.world.setBounds(0, 0, 700, 500);
-
-        for (var i = 0; i < 700; i++) {
-            for (var j = 0; j < 500; j++) {
-                game.add.image(i * 121, j * 121, 'fon');
-            }
-        }
+        game.world.setBounds(0, 0, width * 3, height * 3);
+		
+		background = game.add.image(0, 0, 'background');
+		background.scale.setTo(width * 3 / 273, height * 3 / 121);
 
         // player
         player = game.add.sprite(0, 0, 'ball');
@@ -36,16 +33,34 @@ var worldState = {
 
         mouse = game.input.mousePointer;
 
-        // pause button
-        pauseButton = game.add.button(650, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
+		// pause button
+		pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
 
-        pauseButton.fixedToCamera = true;
+		pauseButton.fixedToCamera = true;
 
-        // rectangle
-        rectangle = game.add.image(350, 300, 'rectangle');
+        // enters
+        doorsEnt = game.add.physicsGroup();
+        doorsEnt.enableBody = true;
+
+        door1 = doorsEnt.create(100, 100, 'rectangle');
+        door1.scale.setTo(0.1, 1.7);
+
+        door2 = doorsEnt.create(200, 200, 'rectangle');
+        door2.scale.setTo(0.1, 1.7);
+
+        // exits
+        doorsExt = game.add.physicsGroup();
+        doorsExt.enableBody = true;
+
+        door1 = doorsExt.create(640, 450, 'rectangle');
+        door1.scale.setTo(0.1, 1.7);
+		
+		// ui
+		// rectangle
+        rectangle = game.add.image(width / 2 - 325, height - 180, 'rectangle');
 
         rectangle.fixedToCamera = true;
-        /*
+		
         // image of player
         playerImage = game.add.sprite(width / 2 - 305, height - 160, 'playerImage');
 
@@ -75,22 +90,36 @@ var worldState = {
 
         other.scale.setTo(0.9, 0.7);
         other.fixedToCamera = true;
-        */
-        // enters
-        doorsEnt = game.add.physicsGroup();
-        doorsEnt.enableBody = true;
+    },
+	update: function () {
+		if(!pause) {
+			game.physics.arcade.overlap(player, doorsEnt);
+			game.physics.arcade.collide(player, doorsExt);
 
-        door1 = doorsEnt.create(100, 100, 'rectangle');
-        door1.scale.setTo(0.1, 1.7);
+			// reset dog
+			player.body.velocity.x = 0;
+			player.body.velocity.y = 0;
 
-        door2 = doorsEnt.create(200, 200, 'rectangle');
-        door2.scale.setTo(0.1, 1.7);
-
-        // exits
-        doorsExt = game.add.physicsGroup();
-        doorsExt.enableBody = true;
-
-        door1 = doorsExt.create(640, 450, 'rectangle');
-        door1.scale.setTo(0.1, 1.7);
-    }
+			// move dog
+			if(cursors.left.isDown) {
+				player.body.velocity.x = -300;
+				player.animations.play('left');
+			}
+			else if(cursors.right.isDown) {
+				player.body.velocity.x = 300;
+				player.animations.play('right');
+			}
+			if(cursors.up.isDown) {
+				player.body.velocity.y = -300;
+			}
+			else if(cursors.down.isDown) {
+				player.body.velocity.y = 300;
+			}
+			if(mouse.leftButton.isDown) {
+				if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
+					weapon.fireAtPointer(mouse);
+				}
+			}
+		}
+	}
 }
