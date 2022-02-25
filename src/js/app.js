@@ -33,6 +33,8 @@ var healthBarConfig;
 var manaBarConfig;
 var playerImage;
 var other;
+var doors;
 var lastX = 0;
 var lastY = 0;
 var house = "hard";
+var interacting = false;

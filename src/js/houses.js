@@ -1,9 +1,12 @@
+// for creating doors
 function createDoor(x1Cord, y1Cord, x2Cord, y2Cord, texture, group) {
-    door = group.create(x1Cord, y1Cord, texture);
+	door = group.create(x1Cord, y1Cord, texture);
     door.scale.setTo((x2Cord - x1Cord) / door.width, (y2Cord - y1Cord) / door.height);
-    door.body.immovable = true;
+	door.body.immovable = true;
+	return door;
 }
 
+// the first house
 function createEasyHouse(game) {
 	// add walls
 	walls = game.add.physicsGroup();
@@ -28,13 +31,17 @@ function createEasyHouse(game) {
     game.physics.arcade.enable(walls);
 	
 	// door
-	createDoor(width / 2 - 10, height / 2 + 200, width / 2 + 10, height / 2 + 210, 'door', doors);
-	
+	door = createDoor(width / 2 - 10, height / 2 + 200, width / 2 + 10, height / 2 + 210, 'door', doors);
+	door.body.onCollide = new Phaser.Signal();
+	door.body.onCollide.add(() => { game.state.start('world'); }, this);
+
+	// interior
     table = walls.create(width / 2 - 300, height / 2 - 200, 'rectangle');
     table.scale.setTo(0.2, 0.6);
 	table.body.immovable = true;
 }
 
+// the second, harder house
 function createHardHouse(game) {
 	// add walls
 	walls = game.add.physicsGroup();
@@ -68,7 +75,8 @@ function createHardHouse(game) {
 	
 	// door
 	door = createDoor(width / 2 + 115, height / 2 + 250, width / 2 + 135, height / 2 + 280, 'door', doors);
-	door.body.onCollide = new Phaser
+	door.body.onCollide = new Phaser.Signal();
+	door.body.onCollide.add(() => { game.state.start('world'); }, this);
 	
 	// interior
     table = walls.create(width / 2 - 350, height / 2 - 250, 'rectangle');

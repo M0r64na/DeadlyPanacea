@@ -17,6 +17,6 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('house');
+        game.state.start('world');
     }
 }
