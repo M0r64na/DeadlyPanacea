@@ -4,7 +4,7 @@ var worldState = {
     create: function () {
         game.world.setBounds(0, 0, width * 3, height * 3);
 		
-	    background = game.add.image(0, 0, 'background');
+	    background = game.add.image(lastX, lastY + 10, 'background');
 	    background.scale.setTo(width * 3 / 273, height * 3 / 121);
 
         // player
@@ -37,15 +37,15 @@ var worldState = {
 
         // ------------------WORLD CREATION-----------------------
         // setup group physics for  the doors
-        doorsEnt = game.add.physicsGroup();
-        doorsEnt.enableBody = true;
-        game.physics.arcade.enable(doorsEnt);
+        doors = game.add.physicsGroup();
+        doors.enableBody = true;
+        game.physics.arcade.enable(doors);
 
         // create the doors TODO make them separate
-        doorHelen = createDoor(100, 100, 150, 150, 'door', doorsEnt);
+        doorHelen = createDoor(100, 100, 150, 150, 'door', doors);
 
-        doorJosh = createDoor(100, 200, 150, 250, 'door', doorsEnt);
-        doorStanley = createDoor(200, 200, 250, 250, 'door', doorsEnt);
+        doorJosh = createDoor(100, 200, 150, 250, 'door', doors);
+        doorStanley = createDoor(200, 200, 250, 250, 'door', doors);
 
         // setup exits logic
         doorsExt = game.add.physicsGroup();
@@ -91,7 +91,7 @@ var worldState = {
     },
     update: function () {
 	    if(!pause) {
-		    game.physics.arcade.collide(player, doorsEnt);
+		    game.physics.arcade.collide(player, doors);
 		    game.physics.arcade.collide(player, doorsExt);
 
 		    // reset dog

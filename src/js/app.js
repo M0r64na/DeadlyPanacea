@@ -7,7 +7,7 @@ var game = new Phaser.Game(
                            Phaser.CANVAS,
                            "body",
                            'load',
-                           false,
+                           true,
                            false
                            );
 
@@ -33,5 +33,6 @@ var healthBarConfig;
 var manaBarConfig;
 var playerImage;
 var other;
-var lastX;
-var lastY;
+var lastX = 0;
+var lastY = 0;
+var house = "hard";
