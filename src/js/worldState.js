@@ -14,9 +14,6 @@ var worldState = {
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
 
-        player.animations.add('left', [1, 0], 3.5);
-        player.animations.add('right', [2, 3], 3.5);
-
         cursors = game.input.keyboard.createCursorKeys();
 
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);

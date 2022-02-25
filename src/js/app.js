@@ -1,15 +1,20 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
+console.log(width, height);
 var game = new Phaser.Game(
                            width,
                            height,
                            Phaser.CANVAS,
-                           "game",
+                           "body",
+                           'load',
+                           false,
+                           false
                            );
 
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
 game.state.add('world', worldState);
+game.state.add('house', houseState);
 
 game.state.start('load');
 
