@@ -4,11 +4,11 @@ var worldState = {
     create: function () {
         game.world.setBounds(0, 0, width * 3, height * 3);
 		
-	    background = game.add.image(lastX, lastY + 10, 'background');
+	    background = game.add.image(0, 0, 'background');
 	    background.scale.setTo(width * 3 / 273, height * 3 / 121);
 
         // player
-        player = game.add.sprite(0, 0, 'ball');
+        player = game.add.sprite(lastX, lastY, 'ball');
         player.enableBody = true;
 
         game.physics.arcade.enable(player);
