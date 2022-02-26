@@ -1,6 +1,5 @@
 var width = window.innerWidth;
 var height = window.innerHeight;
-console.log(width, height);
 var game = new Phaser.Game(
                            width,
                            height,
