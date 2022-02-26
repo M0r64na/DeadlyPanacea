@@ -39,7 +39,7 @@ var worldState = {
 	    pauseButton.fixedToCamera = true;
 
         // enters
-        doorsEnt = game.add.physicsGroup();
+        /*doorsEnt = game.add.physicsGroup();
         doorsEnt.enableBody = true;
 
         door1 = doorsEnt.create(100, 100, 'rectangle');
@@ -53,7 +53,7 @@ var worldState = {
         doorsExt.enableBody = true;
 
         door1 = doorsExt.create(640, 450, 'rectangle');
-        door1.scale.setTo(0.1, 1.7);
+        door1.scale.setTo(0.1, 1.7);*/
 		
 	    // ------------------UI------------------
 	    // menu background
@@ -93,8 +93,8 @@ var worldState = {
     },
     update: function () {
         if(!pause) {
-            game.physics.arcade.overlap(player, doorsEnt);
-            game.physics.arcade.collide(player, doorsExt);
+            /*game.physics.arcade.overlap(player, doorsEnt);
+            game.physics.arcade.collide(player, doorsExt);*/
     
             // reset dog
             player.body.velocity.x = 0;
