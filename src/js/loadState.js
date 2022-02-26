@@ -5,6 +5,7 @@ var loadState = {
         game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
         game.load.image('platform', 'assets/platform.png');
         game.load.image('background', 'assets/fon.jpg');
+        game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');
         game.load.image('play', 'assets/play.png');
         game.load.image('patron', 'assets/bullet.png');
