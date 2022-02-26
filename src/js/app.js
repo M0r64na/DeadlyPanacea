@@ -4,12 +4,16 @@ var game = new Phaser.Game(
                            width,
                            height,
                            Phaser.CANVAS,
-                           "game",
+                           "body",
+                           'load',
+                           true,
+                           false
                            );
 
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
 game.state.add('world', worldState);
+game.state.add('house', houseState);
 
 game.state.start('load');
 
@@ -28,5 +32,8 @@ var healthBarConfig;
 var manaBarConfig;
 var playerImage;
 var other;
-var lastX;
-var lastY;
+var doors;
+var lastX = 0;
+var lastY = 0;
+var house = "hard";
+var interacting = false;
