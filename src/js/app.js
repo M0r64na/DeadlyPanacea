@@ -17,7 +17,7 @@ game.state.add('house', houseState);
 
 game.state.start('load');
 
-//var background;
+var background;
 var player;
 var cursors;
 var sprite;

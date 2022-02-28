@@ -13,10 +13,11 @@ var loadState = {
         game.load.image('playerImage', 'assets/status.png');
         game.load.image('other', 'assets/other.jpg');
         game.load.image('house', 'assets/house.png');
+        game.load.image('startMenuBackground', 'assets/START.jpg');
+        game.load.image('startButton', 'assets/button.png');
     },
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        game.state.start('world');
+        game.state.start('menu');
     }
 }
