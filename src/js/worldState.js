@@ -13,6 +13,10 @@ var worldState = {
 
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
+        player.body.maxVelocity.x = 300;
+        player.body.maxVelocity.y = 300;
+        player.body.drag.x = 2000;
+        player.body.drag.y = 2000;
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -89,23 +93,23 @@ var worldState = {
 		    game.physics.arcade.collide(player, doorsExt);
 
 		    // reset dog
-		    player.body.velocity.x = 0;
-		    player.body.velocity.y = 0;
+            player.body.acceleration.x = 0;
+            player.body.acceleration.y = 0;
 
 		    // move dog
 		    if(cursors.left.isDown) {
-			    player.body.velocity.x = -300;
+			    player.body.acceleration.x -= 2000;
 			    player.animations.play('left');
 		    }
 		    else if(cursors.right.isDown) {
-			    player.body.velocity.x = 300;
+                player.body.acceleration.x += 2000;
 			    player.animations.play('right');
 		    }
 		    if(cursors.up.isDown) {
-			    player.body.velocity.y = -300;
+			    player.body.acceleration.y -= 2000;
 		    }
 		    else if(cursors.down.isDown) {
-			    player.body.velocity.y = 300;
+			    player.body.acceleration.y += 2000;
 		    }
 
 		    if(mouse.leftButton.isDown) {
