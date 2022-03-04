@@ -8,7 +8,8 @@ var loadState = {
         game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');
         game.load.image('play', 'assets/play.png');
-        game.load.image('patron', 'assets/bullet.png');
+		game.load.image('bullet', 'assets/bullet.png');
+        game.load.image('bullet_2', 'assets/bullet_2.png');
         game.load.image('rectangle', 'assets/rectangle.png');
         game.load.image('playerImage', 'assets/status.png');
         game.load.image('other', 'assets/other.jpg');
@@ -17,6 +18,6 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('world');
+        game.state.start('battle');
     }
 }

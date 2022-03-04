@@ -12,7 +12,7 @@ var houseState = {
         game.physics.arcade.enable(doors);
 		
 		// create house logic
-		switch(house) {
+		switch(difficulty) {
 			case "easy":
 				createEasyHouse(game);
 				break;
