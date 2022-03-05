@@ -60,6 +60,7 @@ function createFirstWeapon() {
     weapon.bulletSpeed = 400;
     weapon.bulletKillDistance = 150;
     weapon.fireRate = 1000;
+	playerDamage = 40;
 
     weapon.trackSprite(player, 40, 15, true);
 }
@@ -71,6 +72,7 @@ function createSecondWeapon() {
     weapon.bulletSpeed = 650;
     weapon.bulletKillDistance = 100;
     weapon.fireRate = 800;
+	playerDamage = 40;
 
     weapon.trackSprite(player, 40, 15, true);
 }
