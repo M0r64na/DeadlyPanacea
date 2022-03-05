@@ -49,3 +49,4 @@ var firstHouse;
 var secondHouse;
 var firstHouseDoor;
 var secondHouseDoor
+var playerDamage;
