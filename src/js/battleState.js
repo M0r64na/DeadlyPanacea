@@ -28,7 +28,12 @@ var battleState = {
 
 		player.body.collideWorldBounds = true;
 
-		cursors = game.input.keyboard.createCursorKeys();
+		setUpPlayerMovementController();
+
+		// pause button
+	    pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
+    
+        pauseButton.fixedToCamera = true;
 		
 		// -----------------------------UI------------------------------
 	    // menu background
@@ -73,28 +78,30 @@ var battleState = {
         other.fixedToCamera = true;
 	},
 	update: function () {
-		// ---------------------RESET VARIABLES---------------------------
+		if(!pause) {
+			// ---------------------RESET VARIABLES---------------------------
 		
-		// -------------------------PHYSICS-------------------------------
-		game.physics.arcade.overlap(player, enemy);
-		
-		// todo player weapons one hitscan+heal but no damage other damage
-		// heal will be out of the map, if the player takes it it returns out of the map
+			// -------------------------PHYSICS-------------------------------
+			game.physics.arcade.overlap(player, enemy);
+			
+			// todo player weapons one hitscan+heal but no damage other damage
+			// heal will be out of the map, if the player takes it it returns out of the map
 
-		// enemy behaviour
-		switch(difficulty) {
-			case "easy":
-				easyEnemy(enemy1, enemyWeapon1);
-				easyEnemy(enemy2, enemyWeapon2);
-				break;
-			case "hard":
-				hardEnemy(enemy1, enemyWeapon1);
-				hardEnemy(enemy2, enemyWeapon2);
-				break;
-		}
+			// enemy behaviour
+			switch(difficulty) {
+				case "easy":
+					easyEnemy(enemy1, enemyWeapon1);
+					easyEnemy(enemy2, enemyWeapon2);
+					break;
+				case "hard":
+					hardEnemy(enemy1, enemyWeapon1);
+					hardEnemy(enemy2, enemyWeapon2);
+					break;
+			}
 		
-		// -------------------------CONTROLLER----------------------------
-		playerMovement(player);
-		playerFire(player, weapon);
+			// -------------------------CONTROLLER----------------------------
+			playerMovement(player);
+			playerFire(player, weapon);
+	    }
 	}
 }

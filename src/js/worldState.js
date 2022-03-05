@@ -22,11 +22,6 @@ var worldState = {
 
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 
-	    // pause button
-	    pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
-    
-        pauseButton.fixedToCamera = true;
-
         // ------------------WORLD CREATION-----------------------
         // setup group physics for  the doors
         doors = game.add.physicsGroup();
@@ -82,11 +77,9 @@ var worldState = {
         other.fixedToCamera = true;
     },
     update: function () {
-	    if(!pause) {
-		    game.physics.arcade.collide(player, doors);
-		    game.physics.arcade.collide(player, doorsExt);
+        game.physics.arcade.collide(player, doors);
+		game.physics.arcade.collide(player, doorsExt);
 
-            playerMovement();
-	    }
+        playerMovement();
     }
 }
