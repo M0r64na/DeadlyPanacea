@@ -14,6 +14,7 @@ game.state.add('load', loadState);
 game.state.add('menu', menuState);
 game.state.add('world', worldState);
 game.state.add('house', houseState);
+game.state.add('battle', battleState);
 
 game.state.start('load');
 
@@ -37,5 +38,11 @@ var lastX = 0;
 var lastY = 0;
 var difficulty = "hard";
 var interacting = false;
+var movementI = 0;
+var angle;
 var currentWeaponIndex = 1;
 var changeWeaponKey;
+var movePlayerUpKey;
+var movePlayerDownKey;
+var movePlayerLeftKey;
+var movePlayerRightKey;

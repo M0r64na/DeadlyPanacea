@@ -19,6 +19,8 @@ var loadState = {
     },
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
+
         game.state.start('menu');
+        //game.state.start('menu');
     }
 }
