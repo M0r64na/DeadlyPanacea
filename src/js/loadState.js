@@ -4,7 +4,7 @@ var loadState = {
     preload: function () {
         game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
         game.load.image('platform', 'assets/platform.png');
-        game.load.image('background', 'assets/fon.jpg');
+        game.load.image('background', 'assets/background.png');
         game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');
         game.load.image('play', 'assets/play.png');
@@ -20,7 +20,7 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('menu');
+        game.state.start('world');
         //game.state.start('menu');
     }
 }

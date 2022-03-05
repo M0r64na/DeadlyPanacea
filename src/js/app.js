@@ -45,3 +45,7 @@ var movePlayerUpKey;
 var movePlayerDownKey;
 var movePlayerLeftKey;
 var movePlayerRightKey;
+var firstHouse;
+var secondHouse;
+var firstHouseDoor;
+var secondHouseDoor
