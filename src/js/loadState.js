@@ -20,7 +20,7 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('battle');
+        game.state.start('world');
         // game.state.start('menu');
     }
 }

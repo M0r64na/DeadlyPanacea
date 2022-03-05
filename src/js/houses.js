@@ -1,9 +1,8 @@
 // for creating doors
 function createDoor(x1Cord, y1Cord, x2Cord, y2Cord, texture, group) {
-	door = group.create(x1Cord, y1Cord, texture);
+	door = group.create(x1Cord - 10, y1Cord, texture);
     door.scale.setTo((x2Cord - x1Cord) / door.width, (y2Cord - y1Cord) / door.height);
 	door.body.immovable = true;
-	door.visible = false;
 	return door;
 }
 
@@ -84,7 +83,3 @@ function createHardHouse(game) {
     table.scale.setTo(0.2, 0.6);
 	table.body.immovable = true;
 }
-
-// npc - on collide touch=true izliza textbox i ako interactne otiva na bitka
-
-// vrushtame na lastX i lastY
