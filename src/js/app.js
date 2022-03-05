@@ -45,3 +45,4 @@ var movePlayerUpKey;
 var movePlayerDownKey;
 var movePlayerLeftKey;
 var movePlayerRightKey;
+var playerDamage;

@@ -27,7 +27,7 @@ function createWeapon(sprite, speed, killD, RoF, tracked){
 	
 	return weapon;
 }
-		
+
 // update enemies function
 function easyEnemy(enemy, weapon) { 
 	enemy.body.speed = 100 + (30-enemy.health) * 5;
@@ -45,7 +45,6 @@ function hardEnemy(enemy, weapon){
 	enemy.body.speed = 200 + (enemy.maxHealth-enemy.health) * 2;
 	if (enemy.health < 30){
 		enemy.sendToBack();
-		enemy.body.velocity.y = 300;
 		if (enemy.body.y < 120){
 			enemy.bringToTop();
 		}
@@ -54,12 +53,15 @@ function hardEnemy(enemy, weapon){
 		enemy.body.y = 68;
 		enemy.body.x = width/5 * (Math.random() * (4 - 1) + 1);
 		if (enemy.body.x < width/2) {
-			enemy.body.angle = Math.PI * (1/2 - Math.round(Math.random()) * 1/4);
+			enemy.body.velocity.x = 100;
+			//enemy.body.angle = Math.PI * (1/2 - Math.round(Math.random()) * 1/4);
 		}
 		else {
-			enemy.body.angle = Math.PI * (1/2 + Math.round(Math.random()) * 1/4);
+			enemy.body.velocity.x = -100;
+			//enemy.body.angle = Math.PI * (1/2 + Math.round(Math.random()) * 1/4);
 		}
 	}
-	enemy.body.moveFrom(1000);
+	enemy.body.velocity.y = enemy.body.speed;
+	//console.log(enemy.body.moveFrom(1000));
 	weapon.fireAtSprite(player);
 }
