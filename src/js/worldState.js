@@ -85,8 +85,8 @@ var worldState = {
 	    if(!pause) {
 		    game.physics.arcade.collide(player, doors);
 		    game.physics.arcade.collide(player, doorsExt);
-	    }
 
-        playerMovement();
+            playerMovement();
+	    }
     }
 }
