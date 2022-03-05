@@ -1,26 +1,33 @@
-function playerMovement(player){
+function setUpPlayerMovementController() {
+    movePlayerUpKey = game.input.keyboard.addKey(Phaser.KeyCode.W);
+    movePlayerDownKey = game.input.keyboard.addKey(Phaser.KeyCode.S);
+    movePlayerLeftKey = game.input.keyboard.addKey(Phaser.KeyCode.A);
+    movePlayerRightKey = game.input.keyboard.addKey(Phaser.KeyCode.D);
+}
+
+function playerMovement(){
 	// reset dog
     player.body.acceleration.x = 0;
     player.body.acceleration.y = 0;
 
 	// move dog
-	if(cursors.left.isDown) {
+	if(movePlayerLeftKey.isDown) {
 		player.body.acceleration.x -= 2000;
 		player.animations.play('left');
 	}
-	else if(cursors.right.isDown) {
+	else if(movePlayerRightKey.isDown) {
         player.body.acceleration.x += 2000;
 	    player.animations.play('right');
 	}
-	if(cursors.up.isDown) {
+	if(movePlayerUpKey.isDown) {
 	    player.body.acceleration.y -= 2000;
 	}
-	else if(cursors.down.isDown) {
+	else if(movePlayerDownKey.isDown) {
 	    player.body.acceleration.y += 2000;
 	}
 }
 
-function playerFire(player, weapon){
+function playerFire(){
 	if(mouse.leftButton.isDown) {
 		if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
 		    weapon.fireAtPointer(mouse);

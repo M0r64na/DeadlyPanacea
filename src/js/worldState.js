@@ -11,14 +11,14 @@ var worldState = {
         player = game.add.sprite(lastX, lastY, 'ball');
         player.enableBody = true;
 
+        setUpPlayerMovementController();
+
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         player.body.maxVelocity.x = 300;
         player.body.maxVelocity.y = 300;
         player.body.drag.x = 2000;
         player.body.drag.y = 2000;
-
-        cursors = game.input.keyboard.createCursorKeys();
 
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 
@@ -85,6 +85,8 @@ var worldState = {
 	    if(!pause) {
 		    game.physics.arcade.collide(player, doors);
 		    game.physics.arcade.collide(player, doorsExt);
+
+            playerMovement();
 	    }
     }
 }

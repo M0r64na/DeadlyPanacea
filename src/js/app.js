@@ -42,3 +42,7 @@ var movementI = 0;
 var angle;
 var currentWeaponIndex = 1;
 var changeWeaponKey;
+var movePlayerUpKey;
+var movePlayerDownKey;
+var movePlayerLeftKey;
+var movePlayerRightKey;
