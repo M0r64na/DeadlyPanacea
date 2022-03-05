@@ -35,7 +35,7 @@ var other;
 var doors;
 var lastX = 0;
 var lastY = 0;
-var house = "hard";
+var difficulty = "hard";
 var interacting = false;
 var currentWeaponIndex = 1;
 var changeWeaponKey;

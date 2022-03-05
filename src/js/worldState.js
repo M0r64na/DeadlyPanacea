@@ -159,3 +159,23 @@ function createSecondWeapon() {
 
     weapon.trackSprite(player, 40, 15, true);
 }
+
+// TO DO: pass as callback function to trigger the event
+/*
+function enterHouse() {
+    // set lastX to player x coordinate => return player to that x when they exit the house
+    lastX = player.body.x;
+    // set lastY to player y coordinate => return player to that y when they exit the house
+    lastY = player.body.y;
+    // TO DO: determine house difficulty by player x and y coordinates
+    game.state.start('house');
+}
+
+function exitHouse() {
+    // set player x coordinate to lastX => return player to that x when they exit the house
+    player.body.x = lastX;
+    // set player y coordinate to lastY => return player to that y when they exit the house
+    player.body.y = lastY;
+    game.state.start('world');
+}
+*/
