@@ -22,12 +22,6 @@ var worldState = {
 
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 
-        // weapon - move to battle state
-        changeWeaponKey = game.input.keyboard.addKey(Phaser.KeyCode.Q);
-        createFirstWeapon();
-
-        mouse = game.input.mousePointer;
-
 	    // pause button
 	    pauseButton = game.add.button(width - 50, 10, 'pause', pauseAndUnpause, this, 2, 1, 0);
     
@@ -91,71 +85,6 @@ var worldState = {
 	    if(!pause) {
 		    game.physics.arcade.collide(player, doors);
 		    game.physics.arcade.collide(player, doorsExt);
-
-		    // reset dog
-            player.body.acceleration.x = 0;
-            player.body.acceleration.y = 0;
-
-		    // move dog
-		    if(cursors.left.isDown) {
-			    player.body.acceleration.x -= 2000;
-			    player.animations.play('left');
-		    }
-		    else if(cursors.right.isDown) {
-                player.body.acceleration.x += 2000;
-			    player.animations.play('right');
-		    }
-		    if(cursors.up.isDown) {
-			    player.body.acceleration.y -= 2000;
-		    }
-		    else if(cursors.down.isDown) {
-			    player.body.acceleration.y += 2000;
-		    }
-
-		    if(mouse.leftButton.isDown) {
-			    if((mouse.x < width - 50 || mouse.x > width - 12) && (mouse.y < 10 || mouse.y > 50)) {
-				    weapon.fireAtPointer(mouse);
-			    }
-		    }
-
-            if(changeWeaponKey.isDown) {
-                ++currentWeaponIndex;
-
-                if(currentWeaponIndex > 2) {
-                    currentWeaponIndex = 1;
-                }
-                
-                if(currentWeaponIndex == 1) 
-                {
-                    createFirstWeapon();
-                }
-                else 
-                {
-                    createSecondWeapon();
-                }
-            }
 	    }
     }
-}
-
-function createFirstWeapon() {
-    weapon = game.add.weapon(10, 'bullet_1');
-
-    weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-    weapon.bulletSpeed = 400;
-    weapon.bulletKillDistance = 150;
-    weapon.fireRate = 1000;
-
-    weapon.trackSprite(player, 40, 15, true);
-}
-
-function createSecondWeapon() {
-    weapon = game.add.weapon(10, 'bullet_2');
-
-    weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-    weapon.bulletSpeed = 650;
-    weapon.bulletKillDistance = 100;
-    weapon.fireRate = 800;
-
-    weapon.trackSprite(player, 40, 15, true);
 }
