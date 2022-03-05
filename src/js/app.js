@@ -20,7 +20,6 @@ game.state.start('load');
 
 var background;
 var player;
-var cursors;
 var sprite;
 var platform;
 var pauseButton;
