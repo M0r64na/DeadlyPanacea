@@ -7,26 +7,12 @@ var battleState = {
         background.scale.setTo(width / 273, height / 121);
 		
 		// create enemy
-		enemy = game.add.sprite(width / 2 - 16, 100, 'ball');
-		enemy.enebleBody = true;
-		game.physics.arcade.enable(enemy);
-		enemy.body.setCircle(enemy.width/2);
-		enemy.anchor.setTo(0.5, 0.5);
-		enemy.body.collideWorldBounds = true;
-		
-		enemy.maxHealth = 100;
-		enemy.health = 100;
-		enemy.body.angle = Math.PI/2;
+		enemy1 = createEnemy(width / 3, 100, 'ball');
+		enemy2 = createEnemy(width * 2 / 3, 100, 'ball');
 		
 		// enemy weapon
-		enemyWeapon = game.add.weapon(10, 'bullet_1');
-
-		enemyWeapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-		enemyWeapon.bulletSpeed = 400;
-		enemyWeapon.bulletKillDistance = 150;
-		enemyWeapon.fireRate = 300;
-
-		enemyWeapon.trackSprite(enemy, 40, 15, true);
+		enemyWeapon1 = createWeapon('bullet_1', 400, 150, 300, enemy1);
+		enemyWeapon2 = createWeapon('bullet_1', 400, 150, 300, enemy2);
 		
 		// player
 		player = game.add.sprite(width/2, height/2, 'ball');
@@ -35,6 +21,10 @@ var battleState = {
 		game.physics.arcade.enable(player);
 		player.body.setCircle(enemy.width/2);
 		player.anchor.setTo(0.5, 0.5);
+        player.body.maxVelocity.x = 300;
+        player.body.maxVelocity.y = 300;
+        player.body.drag.x = 2000;
+        player.body.drag.y = 2000;
 
 		player.body.collideWorldBounds = true;
 
@@ -51,6 +41,12 @@ var battleState = {
 
         playerImage.scale.setTo(0.7, 0.7);
         playerImage.fixedToCamera = true;
+		
+        // weapon
+        changeWeaponKey = game.input.keyboard.addKey(Phaser.KeyCode.Q);
+        createFirstWeapon();
+
+        mouse = game.input.mousePointer;
 
         // health bar
         healthBarConfig = { x: width / 2 - 35, y: height - 120, height: 20 };
@@ -78,8 +74,6 @@ var battleState = {
 	},
 	update: function () {
 		// ---------------------RESET VARIABLES---------------------------
-		player.body.velocity.x = 0;
-		player.body.velocity.y = 0;
 		
 		// -------------------------PHYSICS-------------------------------
 		game.physics.arcade.overlap(player, enemy);
@@ -90,28 +84,17 @@ var battleState = {
 		// enemy behaviour
 		switch(difficulty) {
 			case "easy":
-				easyEnemy(game);
+				easyEnemy(enemy1, enemyWeapon1);
+				easyEnemy(enemy2, enemyWeapon2);
 				break;
 			case "hard":
-				hardEnemy(game);
+				hardEnemy(enemy1, enemyWeapon1);
+				hardEnemy(enemy2, enemyWeapon2);
 				break;
 		}
 		
 		// -------------------------CONTROLLER----------------------------
-		// move dog
-		    if(cursors.left.isDown) {
-			    player.body.velocity.x = -300;
-			    player.animations.play('left');
-		    }
-		    else if(cursors.right.isDown) {
-			    player.body.velocity.x = 300;
-			    player.animations.play('right');
-		    }
-		    if(cursors.up.isDown) {
-			    player.body.velocity.y = -300;
-		    }
-		    else if(cursors.down.isDown) {
-			    player.body.velocity.y = 300;
-		    }
+		playerMovement(player);
+		playerFire(player, weapon);
 	}
 }

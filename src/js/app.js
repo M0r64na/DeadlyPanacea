@@ -38,10 +38,7 @@ var lastX = 0;
 var lastY = 0;
 var difficulty = "hard";
 var interacting = false;
-<<<<<<< HEAD
 var movementI = 0;
 var angle;
-=======
 var currentWeaponIndex = 1;
 var changeWeaponKey;
->>>>>>> cb835da503a80500951dbb3eaef068ce7b87d189

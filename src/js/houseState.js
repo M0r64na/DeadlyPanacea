@@ -27,6 +27,10 @@ var houseState = {
 
 		game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
+        player.body.maxVelocity.x = 300;
+        player.body.maxVelocity.y = 300;
+        player.body.drag.x = 2000;
+        player.body.drag.y = 2000;
 
 		cursors = game.input.keyboard.createCursorKeys();
 
@@ -45,8 +49,6 @@ var houseState = {
 	update: function () {
 		// ------------------------RESET VARIABLES------------------------
 		interacting = false;
-		player.body.velocity.x = 0;
-		player.body.velocity.y = 0;
 
 		// -------------------------PHYSICS-------------------------------
 		game.physics.arcade.collide(player, doors, () => { console.log("zaqk"); } );
@@ -54,23 +56,7 @@ var houseState = {
 		game.physics.arcade.collide(player, npc, () => { interacting = true; } );
 
 		// -------------------------CONTROLLER----------------------------
-		// move dog
-		if (cursors.left.isDown) {
-			player.body.velocity.x = -300;
-			text.visible = false;
-		}
-		else if (cursors.right.isDown) {
-			player.body.velocity.x = 300;
-			text.visible = false;
-		}
-		if (cursors.up.isDown) {
-			player.body.velocity.y = -300;
-			text.visible = false;
-		}
-		else if (cursors.down.isDown) {
-			player.body.velocity.y = 300;
-			text.visible = false;
-		}
+		playerMovement(player);
 
 		// go to battle
 		if (interacting) {
