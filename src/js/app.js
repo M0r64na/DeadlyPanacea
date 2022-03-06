@@ -48,5 +48,5 @@ var movePlayerRightKey;
 var firstHouse;
 var secondHouse;
 var firstHouseDoor;
-var secondHouseDoor
+var secondHouseDoor;
 var playerDamage;
