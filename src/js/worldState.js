@@ -2,10 +2,21 @@
 
 var worldState = {
     create: function () {
-        game.world.setBounds(0, 0, width * 3, height * 3);
-		
-	    background = game.add.image(0, 0, 'background');
-	    background.scale.setTo(width * 3 / 273, height * 3 / 121);
+        // world background
+        background = game.add.image(0, 0, 'background');
+
+        walls = game.add.physicsGroup();
+        walls.enableBody = true;
+
+        wall = walls.create(background.width / 2 - 520, 0);
+        wall.scale.setTo(1040 / 32, 625 / 32);
+        wall.body.immovable = true;
+
+        wall = walls.create(background.width / 2 - 335, 625);
+        wall.scale.setTo(670 / 32, 223 / 32);
+        wall.body.immovable = true;
+
+        game.world.setBounds(0, 0, background.width, background.height);
 
         // player
         player = game.add.sprite(lastX, lastY, 'ball');
@@ -28,20 +39,25 @@ var worldState = {
         doors.enableBody = true;
         game.physics.arcade.enable(doors);
 
-        // create the doors TODO make them separate
-        doorHelen = createDoor(100, 100, 150, 150, 'door', doors);
+        // create houses
+        houses = game.add.physicsGroup();
+	    houses.enableBody = true;
 
-        doorJosh = createDoor(100, 200, 150, 250, 'door', doors);
-        doorStanley = createDoor(200, 200, 250, 250, 'door', doors);
+        firstHouse = houses.create(background.width / 12 + 60, background.height / 2 + 30, 'house');
+	    firstHouse.scale.setTo(0.21, 0.21);
+	    firstHouse.body.immovable = true;
 
-        // setup exits logic
-        doorsExt = game.add.physicsGroup();
-        doorsExt.enableBody = true;
-        game.physics.arcade.enable(doorsExt);
-        doorPeter = createDoor(200, 100, 250, 150, 'door', doorsExt);
+        secondHouse = houses.create(background.width * 5 / 6 - 60, background.height / 8, 'house');
+	    secondHouse.scale.setTo(0.21, 0.21);
+	    secondHouse.body.immovable = true;
+
+        // create the doors
+        firstHouseDoor = createDoor(firstHouse.x + firstHouse.width / 2, firstHouse.y + firstHouse.height / 2, firstHouse.x + firstHouse.width, firstHouse.y + firstHouse.height, 'door', doors);
+        secondHouseDoor = createDoor(secondHouse.x + secondHouse.width / 2, secondHouse.y + secondHouse.height / 2, secondHouse.x + secondHouse.width, secondHouse.y + secondHouse.height, 'door', doors);
 		
 	    // ------------------UI-----------------------
 	    // menu background
+        /*
         rectangle = game.add.image(width / 2 - 325, height - 180, 'rectangle');
 
         rectangle.fixedToCamera = true;
@@ -75,10 +91,12 @@ var worldState = {
 
         other.scale.setTo(0.9, 0.7);
         other.fixedToCamera = true;
+        */
     },
     update: function () {
+        game.physics.arcade.collide(player, walls);
+        game.physics.arcade.collide(player, houses);
         game.physics.arcade.collide(player, doors);
-		game.physics.arcade.collide(player, doorsExt);
 
         playerMovement();
     }
