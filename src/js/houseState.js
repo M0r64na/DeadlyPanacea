@@ -22,7 +22,7 @@ var houseState = {
 		}
 		
 		// player
-		player = game.add.sprite(width/2, height/2, 'ball');
+		player = game.add.sprite(width/2, height/2, 'player');
 		player.enableBody = true;
 
 		game.physics.arcade.enable(player);
@@ -33,6 +33,7 @@ var houseState = {
         player.body.drag.y = 2000;
 
 		setUpPlayerMovementController();
+		setUpPlayerMovementAnimations();
 
 		game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 

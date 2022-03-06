@@ -15,7 +15,7 @@ var battleState = {
 		enemyWeapon2 = createWeapon('bullet_1', 400, 150, 300, enemy2);
 		
 		// player
-		player = game.add.sprite(width/2, height/2, 'ball');
+		player = game.add.sprite(width/2, height/2, 'player');
 		player.enableBody = true;
 		
 		game.physics.arcade.enable(player);
@@ -31,6 +31,7 @@ var battleState = {
 		player.body.collideWorldBounds = true;
 
 		setUpPlayerMovementController();
+		setUpPlayerMovementAnimations();
 		
         // weapon
         changeWeaponKey = game.input.keyboard.addKey(Phaser.KeyCode.Q);

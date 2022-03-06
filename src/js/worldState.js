@@ -19,10 +19,11 @@ var worldState = {
         game.world.setBounds(0, 0, background.width, background.height);
 
         // player
-        player = game.add.sprite(lastX, lastY + 10, 'ball');
+        player = game.add.sprite(lastX, lastY + 10, 'player');
         player.enableBody = true;
 
         setUpPlayerMovementController();
+        setUpPlayerMovementAnimations();
 
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
@@ -53,7 +54,7 @@ var worldState = {
 
         // create the doors
         firstHouseDoor = createDoor(firstHouse.x + firstHouse.width / 2, firstHouse.y + firstHouse.height / 2, firstHouse.x + firstHouse.width, firstHouse.y + firstHouse.height + 1, 'door', doors);
-        secondHouseDoor = createDoor(secondHouse.x + secondHouse.width / 2, secondHouse.y + secondHouse.height / 2, secondHouse.x + secondHouse.width, secondHouse.y + secondHouse.height, 'door', doors);
+        secondHouseDoor = createDoor(secondHouse.x + secondHouse.width / 2, secondHouse.y + secondHouse.height / 2, secondHouse.x + secondHouse.width, secondHouse.y + secondHouse.height + 1, 'door', doors);
 		
 	    // ------------------UI-----------------------
 	    // menu background

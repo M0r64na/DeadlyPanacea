@@ -5,6 +5,12 @@ function setUpPlayerMovementController() {
     movePlayerRightKey = game.input.keyboard.addKey(Phaser.KeyCode.D);
 }
 
+// TO DO: invoke function in create function( world state, house state, battle state)
+function setUpPlayerMovementAnimations() {
+    player.animations.add('left', [4, 3, 2, 1, 4], 5);
+	player.animations.add('right', [5 , 6, 7, 8, 5], 5);
+}
+
 function playerMovement(){
 	// reset dog
     player.body.acceleration.x = 0;

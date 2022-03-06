@@ -2,7 +2,7 @@
 
 var loadState = {
     preload: function () {
-        game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
+        game.load.spritesheet('player', 'assets/player_spritesheet.png', 35, 53);
         game.load.image('platform', 'assets/platform.png');
         game.load.image('background', 'assets/background.png');
         game.load.image('door', 'assets/door.png');
