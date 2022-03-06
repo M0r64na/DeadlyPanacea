@@ -48,11 +48,11 @@ var movePlayerRightKey;
 var firstHouse;
 var secondHouse;
 var firstHouseDoor;
-var secondHouseDoor
+var secondHouseDoor;
 var playerDamage;
 var startMenuBackground;
 var title;
 var startButton;
 var guideButton;
 var firstTestTubeSet;
-var secondTestTubeSet
+var secondTestTubeSet;

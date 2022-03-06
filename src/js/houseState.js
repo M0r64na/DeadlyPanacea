@@ -27,15 +27,27 @@ var houseState = {
 
 		game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
+		player.anchor.setTo(0.5, 0.5);
         player.body.maxVelocity.x = 300;
         player.body.maxVelocity.y = 300;
         player.body.drag.x = 2000;
         player.body.drag.y = 2000;
-
+    
 		setUpPlayerMovementController();
 		setUpPlayerMovementAnimations();
 
 		game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
+		
+		switch(difficulty) {
+			case "easy":
+				player.x = width / 2;
+				player.y = height / 2 + 170;
+				break;
+			case "hard":
+				player.x = width / 2 + 175;
+				player.y = height / 2 + 200;
+				break;
+		}
 
 		// npc
 		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'ball');

@@ -60,7 +60,7 @@ function playerFire(){
 }
 
 function createFirstWeapon() {
-    weapon = game.add.weapon(10, 'bullet_1');
+    weapon = game.add.weapon(10, 'bullet_2');
 
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
     weapon.bulletSpeed = 400;
