@@ -1,6 +1,6 @@
 // for creating doors
 function createDoor(x1Cord, y1Cord, x2Cord, y2Cord, texture, group) {
-	door = group.create(x1Cord, y1Cord, texture);
+	door = group.create(x1Cord - 10, y1Cord, texture);
     door.scale.setTo((x2Cord - x1Cord) / door.width, (y2Cord - y1Cord) / door.height);
 	door.body.immovable = true;
 	return door;
@@ -47,11 +47,11 @@ function createEasyHouse(game) {
 	wall.body.immovable = true;
 	// right
 	wall = walls.create(width / 2 + 300, height / 2 - 200);
-	wall.scale.setTo(0.0000000001, 400/32);
+	wall.scale.setTo(0.0000000001, 400 / 32);
 	wall.body.immovable = true;
 	// down
 	wall = walls.create(width / 2 - 300, height / 2 + 200);
-	wall.scale.setTo(600/32, 0.0000000001);
+	wall.scale.setTo(600 / 32, 0.0000000001);
 	wall.body.immovable = true;
 	
 	// ------------------INTERIOR----------------------
@@ -157,23 +157,23 @@ function createHardHouse(game) {
 	wall.body.immovable = true;
 	// leftmost down
 	wall = walls.create(width / 2 - 350 - 10, height / 2);
-	wall.scale.setTo(350/32, 0.0000000001);
+	wall.scale.setTo(350 / 32, 0.0000000001);
 	wall.body.immovable = true;
 	// lower left
 	wall = walls.create(width / 2, height / 2);
-	wall.scale.setTo(0.0000000001, 250/32);
+	wall.scale.setTo(0.0000000001, 250 / 32);
 	wall.body.immovable = true;
 	// rightmost down
 	wall = walls.create(width / 2, height / 2 + 250);
-	wall.scale.setTo(350/32, 0.0000000001);
+	wall.scale.setTo(350 / 32, 0.0000000001);
 	wall.body.immovable = true;
 	// rigth
 	wall = walls.create(width / 2 + 350, height / 2 - 250);
-	wall.scale.setTo(0.0000000001, 500/32);
+	wall.scale.setTo(0.0000000001, 500 / 32);
 	wall.body.immovable = true;
 	// up
 	wall = walls.create(width / 2 - 350, height / 2 - 250);
-	wall.scale.setTo(700/32, 0.0000000001);
+	wall.scale.setTo(700 / 32, 0.0000000001);
 	wall.body.immovable = true;
     game.physics.arcade.enable(walls);
 	
@@ -199,8 +199,8 @@ function createHardHouse(game) {
 	rug.scale.setTo(200/660, 100/430);
 	hostage = game.add.image(width / 2 - 200, height / 2 - 100, "hostage");
 	hostage.scale.setTo(-70/225, 70/225);
+
+    table = walls.create(width / 2 - 350, height / 2 - 250, 'rectangle');
+    table.scale.setTo(0.2, 0.6);
+	table.body.immovable = true;
 }
-
-//npc - on collide touch=true izliza textbox i ako interactne otiva na bitka
-
-//vrushtame na lastX i lastY

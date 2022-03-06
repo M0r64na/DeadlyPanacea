@@ -32,7 +32,7 @@ var houseState = {
         player.body.maxVelocity.y = 300;
         player.body.drag.x = 2000;
         player.body.drag.y = 2000;
-		
+    
 		setUpPlayerMovementController();
 
 		game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
@@ -68,7 +68,7 @@ var houseState = {
 		game.physics.arcade.collide(player, npc, () => { interacting = true; } );
 
 		// -------------------------CONTROLLER----------------------------
-		playerMovement(player);
+		playerMovement();
 
 		// go to battle
 		if (interacting) {
