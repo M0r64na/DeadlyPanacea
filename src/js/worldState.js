@@ -19,7 +19,7 @@ var worldState = {
         game.world.setBounds(0, 0, background.width, background.height);
 
         // player
-        player = game.add.sprite(lastX, lastY, 'ball');
+        player = game.add.sprite(lastX, lastY + 10, 'ball');
         player.enableBody = true;
 
         setUpPlayerMovementController();
@@ -52,7 +52,7 @@ var worldState = {
 	    secondHouse.body.immovable = true;
 
         // create the doors
-        firstHouseDoor = createDoor(firstHouse.x + firstHouse.width / 2, firstHouse.y + firstHouse.height / 2, firstHouse.x + firstHouse.width, firstHouse.y + firstHouse.height, 'door', doors);
+        firstHouseDoor = createDoor(firstHouse.x + firstHouse.width / 2, firstHouse.y + firstHouse.height / 2, firstHouse.x + firstHouse.width, firstHouse.y + firstHouse.height + 1, 'door', doors);
         secondHouseDoor = createDoor(secondHouse.x + secondHouse.width / 2, secondHouse.y + secondHouse.height / 2, secondHouse.x + secondHouse.width, secondHouse.y + secondHouse.height, 'door', doors);
 		
 	    // ------------------UI-----------------------
@@ -96,8 +96,15 @@ var worldState = {
     update: function () {
         game.physics.arcade.collide(player, walls);
         game.physics.arcade.collide(player, houses);
-        game.physics.arcade.collide(player, doors);
+        game.physics.arcade.collide(player, doors, enterHouse);
 
         playerMovement();
     }
+}
+
+function enterHouse() {
+    lastX = player.body.x;
+    lastY = player.body.y;
+
+    game.state.start('house');
 }
