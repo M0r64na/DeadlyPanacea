@@ -12,9 +12,11 @@ var game = new Phaser.Game(
 
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
+game.state.add('guide', guideState);
 game.state.add('world', worldState);
 game.state.add('house', houseState);
 game.state.add('battle', battleState);
+game.state.add('defeat', defeatState);
 
 game.state.start('load');
 

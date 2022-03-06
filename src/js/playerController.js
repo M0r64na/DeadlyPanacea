@@ -5,7 +5,13 @@ function setUpPlayerMovementController() {
     movePlayerRightKey = game.input.keyboard.addKey(Phaser.KeyCode.D);
 }
 
-function playerMovement(){
+// TO DO: invoke function in create function( world state, house state, battle state)
+function setUpPlayerMovementAnimations() {
+    player.animations.add('left', [4, 3, 2, 1, 4], 5);
+	player.animations.add('right', [5 , 6, 7, 8, 5], 5);
+}
+
+function playerMovement(moved){
 	// reset dog
     player.body.acceleration.x = 0;
     player.body.acceleration.y = 0;
@@ -14,17 +20,22 @@ function playerMovement(){
 	if(movePlayerLeftKey.isDown) {
 		player.body.acceleration.x -= 2000;
 		player.animations.play('left');
+        moved = true;
 	}
 	else if(movePlayerRightKey.isDown) {
         player.body.acceleration.x += 2000;
 	    player.animations.play('right');
+        moved = true;
 	}
 	if(movePlayerUpKey.isDown) {
 	    player.body.acceleration.y -= 2000;
+        moved = true;
 	}
 	else if(movePlayerDownKey.isDown) {
 	    player.body.acceleration.y += 2000;
+        moved = true;
 	}
+    return moved;
 }
 
 function playerFire(){

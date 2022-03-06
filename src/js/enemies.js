@@ -51,6 +51,9 @@ function enemyLogic(enemy, weapon){
 		}
 	}
 	enemy.body.velocity.y = enemy.body.speed;
+	if(enemy.body.velocity.x < 0){
+		enemy.animations.play('left');
+	}
 	//console.log(enemy.body.moveFrom(1000));
 	weapon.fireAtSprite(player);
 }

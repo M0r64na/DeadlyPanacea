@@ -16,14 +16,19 @@ var battleState = {
 		}
 		
 		// create enemy
-		enemy1 = createEnemy(width / 3, 100, 'ball');
-		enemy2 = createEnemy(width * 2 / 3, 100, 'ball');
+		enemy1 = createEnemy(width / 3, 100, 'enemy');
+		enemy1.animations.add('left', [4, 3, 2, 1, 4], 5);
+		enemy1.animations.add('right', [5 , 6, 7, 8, 5], 5);
+		enemy2 = createEnemy(width * 2 / 3, 100, 'enemy');
+		enemy2.animations.add('left', [4, 3, 2, 1, 4], 5);
+		enemy2.animations.add('right', [5 , 6, 7, 8, 5], 5);
 		
 		// enemy weapon
 		enemyWeapon1 = createWeapon('bullet_1', 400, 150, 300, enemy1);
 		enemyWeapon2 = createWeapon('bullet_1', 400, 150, 300, enemy2);
 		
 		if (difficulty == "hard"){
+			enemy.health = 0;
 			enemy2.kill();
 			enemy1.x = width / 2;
 			enemy1.maxHealth = 200;
@@ -31,7 +36,7 @@ var battleState = {
 		}
 		
 		// player
-		player = game.add.sprite(width/2, height/2, 'ball');
+		player = game.add.sprite(width/2, height/2, 'player');
 		player.enableBody = true;
 		
 		game.physics.arcade.enable(player);
@@ -47,6 +52,7 @@ var battleState = {
 		player.body.collideWorldBounds = true;
 
 		setUpPlayerMovementController();
+		setUpPlayerMovementAnimations();
 		
         // weapon
         changeWeaponKey = game.input.keyboard.addKey(Phaser.KeyCode.Q);
