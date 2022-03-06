@@ -2,7 +2,7 @@
 
 var loadState = {
     preload: function () {
-        game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
+        game.load.spritesheet('player', 'assets/player_spritesheet.png', 35, 53);
         game.load.image('platform', 'assets/platform.png');
         game.load.image('bookshelf', 'assets/bookshelf.png');
         game.load.image('canvas', 'assets/canvas.png');
@@ -13,7 +13,7 @@ var loadState = {
         game.load.image('sofa', 'assets/sofa.png');
         game.load.image('rug', 'assets/rug.png');
         game.load.image('hostage', 'assets/hostage.png');
-        game.load.image('background', 'assets/fon.jpg');
+        game.load.image('background', 'assets/battleBg.jpg');
         game.load.image('worldBackground', 'assets/background.png');
         game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');
