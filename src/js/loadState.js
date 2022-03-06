@@ -14,13 +14,16 @@ var loadState = {
         game.load.image('playerImage', 'assets/status.png');
         game.load.image('other', 'assets/other.jpg');
         game.load.image('house', 'assets/house.png');
-        game.load.image('startMenuBackground', 'assets/START.jpg');
-        game.load.image('startButton', 'assets/button.png');
+        game.load.image('startMenuBackground', 'assets/start_menu_background.png');
+        game.load.image('title', 'assets/title.png');
+        game.load.image('startButton', 'assets/play_button.png');
+        game.load.image('guideButton', 'assets/guide_button.png');
+        game.load.image('first_test_tube_set', 'assets/first_test_tube_set.png');
+        game.load.image('second_test_tube_set', 'assets/second_test_tube_set.png');
     },
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('world');
-        // game.state.start('menu');
+        game.state.start('menu');
     }
 }
