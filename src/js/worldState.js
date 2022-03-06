@@ -3,7 +3,7 @@
 var worldState = {
     create: function () {
         // world background
-        background = game.add.image(0, 0, 'background');
+        background = game.add.image(0, 0, 'worldBackground');
 
         walls = game.add.physicsGroup();
         walls.enableBody = true;
