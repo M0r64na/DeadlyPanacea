@@ -34,6 +34,6 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('defeat');
+        game.state.start('victory');
     }
 }
