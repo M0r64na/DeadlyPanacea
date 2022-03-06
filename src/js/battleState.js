@@ -7,8 +7,8 @@ var battleState = {
         background.scale.setTo(width / 273, height / 121);
 		
 		// create enemy
-		enemy1 = createEnemy(width / 3, 100, 'ball');
-		enemy2 = createEnemy(width * 2 / 3, 100, 'ball');
+		enemy1 = createEnemy(width / 3, 100, 'player');
+		enemy2 = createEnemy(width * 2 / 3, 100, 'player');
 		
 		// enemy weapon
 		enemyWeapon1 = createWeapon('bullet_1', 400, 150, 300, enemy1);

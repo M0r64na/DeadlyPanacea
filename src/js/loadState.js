@@ -13,7 +13,7 @@ var loadState = {
         game.load.image('sofa', 'assets/sofa.png');
         game.load.image('rug', 'assets/rug.png');
         game.load.image('hostage', 'assets/hostage.png');
-        game.load.image('background', 'assets/fon.jpg');
+        game.load.image('background', 'assets/battleBg.jpg');
         game.load.image('worldBackground', 'assets/background.png');
         game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');

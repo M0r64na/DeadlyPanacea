@@ -50,7 +50,7 @@ var houseState = {
 		}
 
 		// npc
-		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'ball');
+		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'player');
 		npc.enableBody = true;
 		game.physics.arcade.enable(npc);
 		npc.body.immovable = true;
@@ -62,19 +62,24 @@ var houseState = {
 	update: function () {
 		// ------------------------RESET VARIABLES------------------------
 		interacting = false;
+		moved = false;
+
+		// -------------------------CONTROLLER----------------------------
+		moved = playerMovement(moved);
 
 		// -------------------------PHYSICS-------------------------------
 		game.physics.arcade.collide(player, doors, () => { console.log("zaqk"); } );
 		game.physics.arcade.collide(player, walls);
 		game.physics.arcade.collide(player, npc, () => { interacting = true; } );
 
-		// -------------------------CONTROLLER----------------------------
-		playerMovement();
-
 		// go to battle
-		if (interacting) {
+		if (interacting && !moved) {
 			text.visible = true;
 			// todo add battle state
         }
+		
+		if (moved) {
+			text.visible = false;
+		}
     }
 }

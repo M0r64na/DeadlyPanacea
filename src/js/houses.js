@@ -39,19 +39,21 @@ function createEasyHouse(game) {
 	walls.enableBody = true;
 	// left
 	wall = walls.create(width / 2 - 300, height / 2 - 200);
-	wall.scale.setTo(0.0000000001, 400/32);
+	wall.scale.setTo(0.1, 400/32);
+	wall.anchor.setTo(1, 0);
 	wall.body.immovable = true;
 	// up
 	wall = walls.create(width / 2 - 300, height / 2 - 200);
-	wall.scale.setTo(600/32, 0.0000000001);
+	wall.scale.setTo(600/32, 0.1);
+	wall.anchor.setTo(0, 1);
 	wall.body.immovable = true;
 	// right
 	wall = walls.create(width / 2 + 300, height / 2 - 200);
-	wall.scale.setTo(0.0000000001, 400 / 32);
+	wall.scale.setTo(0.1, 400 / 32);
 	wall.body.immovable = true;
 	// down
 	wall = walls.create(width / 2 - 300, height / 2 + 200);
-	wall.scale.setTo(600 / 32, 0.0000000001);
+	wall.scale.setTo(600 / 32, 0.1);
 	wall.body.immovable = true;
 	
 	// ------------------INTERIOR----------------------
