@@ -4,6 +4,15 @@ var loadState = {
     preload: function () {
         game.load.spritesheet('ball', 'assets/baddie.png', 32, 32);
         game.load.image('platform', 'assets/platform.png');
+        game.load.image('bookshelf', 'assets/bookshelf.png');
+        game.load.image('canvas', 'assets/canvas.png');
+        game.load.image('wall', 'assets/wallTile.png');
+        game.load.image('floor', 'assets/floor.png');
+        game.load.image('table', 'assets/table.png');
+        game.load.image('cat', 'assets/cat_box.png');
+        game.load.image('sofa', 'assets/sofa.png');
+        game.load.image('rug', 'assets/rug.png');
+        game.load.image('hostage', 'assets/hostage.png');
         game.load.image('background', 'assets/fon.jpg');
         game.load.image('door', 'assets/door.png');
         game.load.image('pause', 'assets/pause.png');
@@ -20,7 +29,7 @@ var loadState = {
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.state.start('battle');
+        game.state.start('house');
         //game.state.start('menu');
     }
 }

@@ -22,19 +22,31 @@ var houseState = {
 		}
 		
 		// player
-		player = game.add.sprite(width/2, height/2, 'ball');
+		player = game.add.sprite(0, 0, 'ball');
 		player.enableBody = true;
 
 		game.physics.arcade.enable(player);
 		player.body.collideWorldBounds = true;
+		player.anchor.setTo(0.5, 0.5);
         player.body.maxVelocity.x = 300;
         player.body.maxVelocity.y = 300;
         player.body.drag.x = 2000;
         player.body.drag.y = 2000;
-
-		cursors = game.input.keyboard.createCursorKeys();
+		
+		setUpPlayerMovementController();
 
 		game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
+		
+		switch(difficulty) {
+			case "easy":
+				player.x = width / 2;
+				player.y = height / 2 + 170;
+				break;
+			case "hard":
+				player.x = width / 2 + 175;
+				player.y = height / 2 + 200;
+				break;
+		}
 
 		// npc
 		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'ball');
