@@ -6,6 +6,7 @@ function createEnemy(x, y, sprite){
 	enemy.body.setCircle(enemy.width/2);
 	enemy.anchor.setTo(0.5, 0.5);
 	enemy.body.collideWorldBounds = true;
+	enemy.body.bounce = 0.9;
 		
 	enemy.maxHealth = 100;
 	enemy.health = 100;
@@ -15,7 +16,7 @@ function createEnemy(x, y, sprite){
 }
 
 // create weapon
-function createWeapon(sprite, speed, killD, RoF, tracked){
+function createWeapon(sprite, RoF, speed, killD, tracked){
 	weapon = game.add.weapon(10, sprite);
 
 	weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
@@ -29,19 +30,7 @@ function createWeapon(sprite, speed, killD, RoF, tracked){
 }
 
 // update enemies function
-function easyEnemy(enemy, weapon) { 
-	enemy.body.speed = 100 + (30-enemy.health) * 5;
-	if (enemy.body.velocity.x == 0 || enemy.body.velocity.y == 0 ){
-		enemy.body.moveFrom(5000, enemy.speed, Math.random() * (360 - 0) - 0);
-	} else if (enemy.health > 30){
-		weapon.fireAtSprite(player);
-		if(!enemy.body.isMoving) enemy.body.moveFrom(3000, 100, Math.random() * (360 - 0) - 0);
-	} else if (game.physics.arcade.distanceBetween(enemy, player) > 200){
-		game.physics.arcade.moveToObject(enemy, player, enemy.body.speed);
-	}
-}
-
-function hardEnemy(enemy, weapon){
+function enemyLogic(enemy, weapon){
 	enemy.body.speed = 200 + (enemy.maxHealth-enemy.health) * 2;
 	if (enemy.health < 30){
 		enemy.sendToBack();
@@ -62,6 +51,9 @@ function hardEnemy(enemy, weapon){
 		}
 	}
 	enemy.body.velocity.y = enemy.body.speed;
+	if(enemy.body.velocity.x < 0){
+		enemy.animations.play('left');
+	}
 	//console.log(enemy.body.moveFrom(1000));
 	weapon.fireAtSprite(player);
 }

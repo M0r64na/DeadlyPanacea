@@ -5,11 +5,12 @@
 // pBullet damage enemy
 function hitEnemy(enemy, bullets){
 	enemy.damage(playerDamage);
-	bullets.destroy();
+	bullets.kill();
+	console.log("zadada");
 }
 // eBullet damage player
 function hitPlayer(player, bullets){
 	// animation
-	player.damage(20);
-	bullets.destroy();
+	player.damage(5);
+	bullets.kill();
 }
