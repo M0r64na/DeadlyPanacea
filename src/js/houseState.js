@@ -35,8 +35,6 @@ var houseState = {
     
 		setUpPlayerMovementController();
 		setUpPlayerMovementAnimations();
-
-		game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON);
 		
 		switch(difficulty) {
 			case "easy":
@@ -50,14 +48,15 @@ var houseState = {
 		}
 
 		// npc
-		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'player');
+		npc = game.add.sprite(width / 2 - 100, height / 2 - 100, 'enemy');
 		npc.enableBody = true;
 		game.physics.arcade.enable(npc);
 		npc.body.immovable = true;
 
 		// text (for texting purposes)
-		text = game.add.text(300, 10, "touch");
+		text = game.add.text(300, 10, "Press E to fight");
 		text.visible = false;
+        startBattle = game.input.keyboard.addKey(Phaser.KeyCode.E);
     },
 	update: function () {
 		// ------------------------RESET VARIABLES------------------------
@@ -75,11 +74,10 @@ var houseState = {
 		// go to battle
 		if (interacting && !moved) {
 			text.visible = true;
-			// todo add battle state
         }
-		
 		if (moved) {
 			text.visible = false;
 		}
+		if (startBattle.isDown && text.visible) game.state.start("battle");
     }
 }

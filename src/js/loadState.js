@@ -3,6 +3,7 @@
 var loadState = {
     preload: function () {
         game.load.spritesheet('player', 'assets/player_spritesheet.png', 35, 53);
+        game.load.spritesheet('enemy', 'assets/enemy_sprite.png', 35, 53);
         game.load.image('platform', 'assets/platform.png');
         game.load.image('bookshelf', 'assets/bookshelf.png');
         game.load.image('canvas', 'assets/canvas.png');
@@ -33,7 +34,6 @@ var loadState = {
     },
     create: function () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        game.state.start('victory');
+        game.state.start('menu');
     }
 }
